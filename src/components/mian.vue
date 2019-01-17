@@ -1,5 +1,6 @@
 <template>
   <div class="main-container">
+    <myBreadcrumb level2="牛逼" level3="真牛逼"></myBreadcrumb>
     <el-container>
       <el-header>
         <el-row>
@@ -16,70 +17,104 @@
           </el-col>
           <el-col :span="2">
             <div class="grid-content bg-purple">
-              <el-button @click="logout" type="success">退出</el-button>
+              <el-button
+                @click="logout"
+                type="success"
+              >退出</el-button>
             </div>
           </el-col>
         </el-row>
       </el-header>
-     <el-container>
+      <el-container>
         <el-aside width="201px">
           <el-menu
             default-active="2"
             class="el-menu-vertical-demo"
-            @open="handleOpen"
-            @close="handleClose"
             background-color="#545c64"
             text-color="#fff"
             active-text-color="#ffd04b"
+            router
           >
-            <el-submenu index="1">
+            <el-submenu
+              v-for="(item, index) in menuList"
+              :key="item.id"
+              :index="item.order + ''"
+            >
               <template slot="title">
                 <i class="el-icon-location"></i>
-                <span>导航一</span>
+                <span>{{item.authName}}</span>
               </template>
-              <el-menu-item index="1-1">
-                <i class="el-icon-menu"></i>选项1
+              <!-- 子菜单 -->
+              <el-menu-item
+                v-for="(it, i) in item.children"
+                :key="it.id"
+                :index="'/'+it.path"
+              >
+                <i class="el-icon-menu"></i>
+                {{it.authName}}
               </el-menu-item>
             </el-submenu>
           </el-menu>
         </el-aside>
-        <el-main>Main</el-main>
+        <el-main>
+          <!-- 渲染嵌套路由匹配的组件 -->
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
 </template>
 <script>
 export default {
- methods: {
-     logout() {
-       //注册在原型上的方法
-       this.$confirm("你真的要退出吗?","提示", {
-         confirmButtonText: "狠心退出",
-         cancelButtonText: "再看看",
-         type: "warning"
-       }).then(() => {
-         //清除token
-         window.sessionStorage.removeItem("token");
-         //编程式导航
-         this.$router.push("login");
-         //成功
-         this.$message({
-           type: "success",
-           message: "你真狠!"
-         });
-       }).catch(() => {
-         //取消
-         this.$message({
-           type: "info",
-           message: "你真好 比心"
-         });
-       });
-     }
- }
+  data() {
+    return {
+      menuList: []
+    };
+  },
+  methods: {
+    logout() {
+      //注册在原型上的方法
+      this.$confirm("你真的要退出吗?", "提示", {
+        confirmButtonText: "狠心退出",
+        cancelButtonText: "再看看",
+        type: "warning"
+      })
+        .then(() => {
+          //清除token
+          window.sessionStorage.removeItem("token");
+          //编程式导航
+          this.$router.push("login");
+          //成功
+          this.$message({
+            type: "success",
+            message: "你真狠!"
+          });
+        })
+        .catch(() => {
+          //取消
+          this.$message({
+            type: "info",
+            message: "你真好 比心"
+          });
+        });
+    }
+  },
+  //created
+  created() {
+    this.$axios
+      .get("menus", {
+        // headers:{AUthrization: window.sessionStorage.getItem("token")}
+      })
+      .then(res => {
+        console.log(res);
+        this.menuList = res.data.data;
+      });
+  }
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+// <style lang="scss" scoped>
 //预处理 结合 父选择器[css作用域]
 .main-container {
   height: 100%;
@@ -117,7 +152,7 @@ export default {
     background-color: #e9eef3;
     color: #333;
     text-align: center;
-    line-height: 160px;
+    // line-height: 160px;
   }
   //设置折叠菜单 样式
   .el-submenu__title {

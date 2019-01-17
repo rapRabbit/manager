@@ -15,7 +15,12 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
 //导入自己抽取的路由
-import router from './lib/router'
+import router from './lib/router';
+
+//全局注册面包屑导航
+import myBreadcrumb from './components/myBreadcrumb.vue';
+//全局注册面包屑组件
+Vue.component('myBreadcrumb',myBreadcrumb);
 
 new Vue({
   el: '#app',

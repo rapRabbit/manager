@@ -82,14 +82,14 @@ export default {
             // console.log(res);
             if (res.data.meta.status === 400) {
               //错误
-              this.$message.error(res.data.meta.msg);
+              // this.$message.error(res.data.meta.msg);
             } else if (res.data.meta.status === 200) {
               //正确
               // this.$message({
               //   message: res.data.meta.msg,
               //   type: " success"
               // });
-              this.$message.success(res.data.meta.msg);
+              // this.$message.success(res.data.meta.msg);
               //保存token sessionStorage
               window.sessionStorage.setItem("token", res.data.data.token);
               //去首页

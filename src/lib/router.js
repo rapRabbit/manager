@@ -8,6 +8,7 @@ Vue.use(VueRouter);
 //导入路由管理的组件
 import login from '../components/login.vue';
 import main from '../components/mian.vue';
+import user from '../components/users.vue';
 
 //写规则
 let routes = [
@@ -19,7 +20,11 @@ let routes = [
     //主页
     {
         path: '/',
-        component: main
+        component: main,
+        children: [{
+            path: 'users',
+            component: user
+        }]
     }
 ]
 
@@ -30,13 +35,14 @@ let router = new VueRouter({
 
 //注册导航守卫( 实际是 回调函数)
 router.beforeEach((to, from, next) => {
-    console.log('执行了');
-    console.log(to);
-    console.log(from);
+    // console.log('执行了');
+    // console.log(to);
+    // console.log(from);
     //...
     //next 方法如果不执行 就不会跳转
     next();
     if (to.path === '/login') {
+        //登录页 不需要判断
         next();
     } else {
         //判断登录 判断是否有token
