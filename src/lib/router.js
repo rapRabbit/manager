@@ -9,6 +9,13 @@ Vue.use(VueRouter);
 import login from '../components/login.vue';
 import main from '../components/mian.vue';
 import user from '../components/users.vue';
+import roles from '../components/roles.vue';
+import rights from '../components/rights.vue';
+import goods from '../components/goods.vue';
+import params from '../components/params.vue';
+import categories from '../components/categories.vue';
+
+
 
 //写规则
 let routes = [
@@ -24,7 +31,23 @@ let routes = [
         children: [{
             path: 'users',
             component: user
+        },{
+            path: 'roles',
+            component: roles
+        },{
+            path: 'rights',
+            component: rights
+        },{
+            path: 'goods',
+            component: goods
+        },{
+            path: 'params',
+            component: params
+        },{
+            path: 'categories',
+            component: categories
         }]
+
     }
 ]
 
