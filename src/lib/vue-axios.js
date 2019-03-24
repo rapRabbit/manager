@@ -29,7 +29,7 @@ axios.interceptors.request.use(config => {
 });
 
 //axios 响应拦截器
-//请求响应回来之后 会触发这个毁掉函数
+//请求响应回来之后 会触发这个回调函数
 axios.interceptors.response.use((response) => {
     //根据响应的状态码 同一用户提示
     if (response.data.meta.status === 200) {

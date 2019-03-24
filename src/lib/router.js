@@ -9,6 +9,14 @@ Vue.use(VueRouter);
 import login from '../components/login.vue';
 import main from '../components/mian.vue';
 import user from '../components/users.vue';
+import roles from '../components/roles.vue';
+import rights from '../components/rights.vue';
+import associations from '../components/associations.vue';
+import params from '../components/params.vue';
+import categories from '../components/categories.vue';
+import orders from '../components/orders.vue';
+import reports from '../components/reports.vue';
+
 
 //写规则
 let routes = [
@@ -21,10 +29,40 @@ let routes = [
     {
         path: '/',
         component: main,
-        children: [{
-            path: 'users',
-            component: user
-        }]
+        children: [
+            {
+                path: 'users',
+                component: user
+            },
+            {
+                path: 'roles',
+                component: roles
+            },
+            {
+                path: 'rights',
+                component: rights
+            },
+            {
+                path: 'associations',
+                component: associations
+            },
+            {
+                path:'params',
+                component:params
+              },
+              {
+                path:'categories',
+                component:categories
+              },
+              {
+                path:'orders',
+                component:orders
+              },
+              {
+                path:'reports',
+                component:reports
+              },
+        ]
     }
 ]
 
@@ -53,7 +91,7 @@ router.beforeEach((to, from, next) => {
             next();
         } else {
             //没有token 未登录
-            //这里不是Vue实例 无法通过this访问 但是可以访问到Vue构造函数 可以同原型访问
+            //这里不是Vue实例 无法通过this访问 但是可以访问到Vue构造函数 可以用原型访问
             Vue.prototype.$message.error('请先登录');
             // this.$message.error("请先登录");
 

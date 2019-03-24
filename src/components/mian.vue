@@ -1,19 +1,19 @@
 <template>
   <div class="main-container">
-    <myBreadcrumb level2="牛逼" level3="真牛逼"></myBreadcrumb>
+    <!-- <myBreadcrumb level2="牛逼" level3="真牛逼"></myBreadcrumb> -->
     <el-container>
       <el-header>
         <el-row>
           <el-col :span="4">
             <div class="grid-content bg-purple">
               <img
-                src="../assets/logo.png"
+                src="../assets/logo1.png"
                 alt
               >
             </div>
           </el-col>
           <el-col :span="18">
-            <div class="grid-content bg-purple-light">电商后台管理系统</div>
+            <div class="grid-content bg-purple-light">学生社团管理系统</div>
           </el-col>
           <el-col :span="2">
             <div class="grid-content bg-purple">
@@ -102,10 +102,7 @@ export default {
   //created
   created() {
     this.$axios
-      .get("menus", {
-        // headers:{AUthrization: window.sessionStorage.getItem("token")}
-      })
-      .then(res => {
+      .get("menus").then(res => {
         console.log(res);
         this.menuList = res.data.data;
       });
@@ -121,10 +118,19 @@ export default {
   /* element-ui 的自带的的类名 直接添加*/
   .el-container {
     height: 100%;
+    .el-header {
+      padding-left: 0;
+      .grid-content {
+        img {
+        width: 200px;
+        height: 60px;
+        }
+      }
+    }
   }
   .el-header,
   .el-footer {
-    background-color: #b3c0d1;
+    background-color: #444444;
     color: #333;
     text-align: center;
     line-height: 60px;

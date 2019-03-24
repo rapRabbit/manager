@@ -16,7 +16,9 @@
           label="用户名"
           prop="username"
         >
-          <el-input v-model="formData.username"></el-input>
+          <el-input v-model="formData.username" 
+          @keyup.enter.native="submitForm('formData')"
+          ></el-input>
         </el-form-item>
         <el-form-item
           label="密码"
@@ -25,6 +27,7 @@
           <el-input
             type="password"
             v-model="formData.password"
+            @keyup.enter.native="submitForm('formData')"
           ></el-input>
         </el-form-item>
         <!-- login-btn 自定义类名 避免跟默认冲突 -->
