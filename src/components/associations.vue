@@ -78,14 +78,15 @@ export default {
             //总页数
             total: 0,
             //用户的数据
+            goodsList: []
         };
     },
     //事件
-    method: {
+    methods: {
         //获取分页数据的方法
         async getGoods(){
             //从上往下执行代码
-            let res = await this.$axios.get("associations",{
+            let res = await this.$axios.get("goods",{
                 params: this.pageData
             });
             //赋值

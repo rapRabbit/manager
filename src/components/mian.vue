@@ -68,7 +68,29 @@
 export default {
   data() {
     return {
-      menuList: []
+      menuList: [],
+       level2: "用户管理",
+      level3: "用户列表",
+      pageData: {
+        query: "",
+        // 页码
+        pagenum: 1,
+        // 页容量
+        pagesize: 10
+      },
+      // 总页数
+      total: 0,
+      // 用户的数据
+      userList: [],
+      //是否显示对话框
+      visible: false,
+      //提交的表单数据
+      form: {
+        username: "",
+        password: "",
+        email: "",
+        mobile: ""
+      },
     };
   },
   methods: {
@@ -97,6 +119,16 @@ export default {
             message: "你真好 比心"
           });
         });
+    },
+    async getUsers() {
+      //从上到下执行代码
+      let res = await this.$axios.get("users", {
+        params: this.pageData
+      });
+      //赋值
+      // console.log(res);
+      this.userList = res.data.data.users;
+      this.total = res.data.data.total;
     }
   },
   //created
