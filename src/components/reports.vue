@@ -27,7 +27,7 @@ export default {
       level3: "数据报表",
       // 表格的初始数据
       // echarts 实例中的基础数据 https://echarts.baidu.com/examples/editor.html?c=area-stack
-      //实例数据
+      //示例数据
       options: {
         title: {
           text: "用户来源"
