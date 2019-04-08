@@ -42,7 +42,7 @@ export default {
     //从上往下执行代码
     let res = await this.$axios.get("rights/list");
     //赋值
-    this.rightsLists = res.data.data;
+    this.rightLists = res.data.data;
   }
 };
 </script>

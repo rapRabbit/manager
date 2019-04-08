@@ -86,8 +86,8 @@ export default {
   },
   data() {
     return {
-      level2: "商品管理",
-      level3: "商品分类",
+      level2: "社团管理",
+      level3: "社团分类",
       pageData: {
         type: 3,
         // 页码

@@ -14,19 +14,19 @@
       <el-col :span="24">
         <el-table :data="orderList" style="width: 100%" border>
           <el-table-column label="#" width="40" type="index"></el-table-column>
-          <el-table-column prop="order_number" label="订单编号" width="251"></el-table-column>
-          <el-table-column prop="order_price" label="订单价格" width="100"></el-table-column>
-          <el-table-column prop="goods_weight" label="是否付款" width="100">
+          <el-table-column prop="order_number" label="事件编号" width="251"></el-table-column>
+          <el-table-column prop="goods_weight" label="事件状态" width="100">
             <template slot-scope="prop">
-              <el-button type="danger" v-if="prop.row.pay_status==='0'">未付款</el-button>
-              <el-button type="success" v-else>已付款</el-button>
+              <el-button type="danger" v-if="prop.row.pay_status==='0'">未处理</el-button>
+              <el-button type="success" v-else>已通过</el-button>
             </template>
           </el-table-column>
-          <el-table-column prop="is_send" label="是否发货" width="250"></el-table-column>
-          <el-table-column prop="create_time" label="下单时间" width="250">
+          <!-- <el-table-column prop="is_send" label="是否发货" width="250"></el-table-column> -->
+          <el-table-column prop="create_time" label="生成时间" width="200">
             <template slot-scope="prop">{{prop.row.create_time | beautifyTime}}</template>
           </el-table-column>
-          <el-table-column label="操作">
+          <el-table-column prop="order_price" label="事件描述" ></el-table-column>
+          <el-table-column label="操作" width="70">
             <template slot-scope="scope">
               <el-button type="primary" plain size="mini" icon="el-icon-edit"></el-button>
             </template>

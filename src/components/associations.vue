@@ -30,8 +30,8 @@
       <el-col :span="24">
         <el-table :data="goodsList" style="width: 100%" border>
           <el-table-column label="#" width="40" type="index"></el-table-column>
-          <el-table-column prop="goods_name" label="社团名称" width="500"></el-table-column>
-          <el-table-column prop="goods_price" label="社团简介" width="100"></el-table-column>
+          <el-table-column prop="goods_name" label="社团名称" width="150"></el-table-column>
+          <el-table-column prop="goods_price" label="社团简介" width="450"></el-table-column>
           <el-table-column prop="goods_weight" label="社团负责人" width="100"></el-table-column>
           <el-table-column prop="add_time" label="创建时间" width="250">
             <template slot-scope="prop">{{prop.row.add_time | beautifyTime}}</template>
@@ -92,6 +92,7 @@ export default {
             //赋值
             this.total = res.data.data.total;
             this.goodsList = res.data.data.goods;
+            console.log(res.data.data.goods);
         },
         //页码改变
         currentChange(pagenum) {
